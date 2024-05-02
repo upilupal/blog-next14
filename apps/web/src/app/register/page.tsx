@@ -42,7 +42,7 @@ const Register: React.FC = () => {
                                   handleChange={formik.handleChange}
                                   placeholder="Name"
                                   type="name"
-                                  value={formik.values.fullName} label={''}                />
+                                  value={formik.values.fullName} label={'Name'}                />
                 {/* NAME END */}
 
                 {/* EMAIL */}
@@ -54,7 +54,7 @@ const Register: React.FC = () => {
                                   handleChange={formik.handleChange}
                                   placeholder="Email"
                                   type="email"
-                                  value={formik.values.email} label={''}                />
+                                  value={formik.values.email} label={'Email'}                />
                 {/* EMAIL END */}
 
                 {/* PASSWORD */}
@@ -66,7 +66,7 @@ const Register: React.FC = () => {
                                   handleChange={formik.handleChange}
                                   placeholder="Password"
                                   type="password"
-                                  value={formik.values.password} label={''}                />
+                                  value={formik.values.password} label={'Password'}                />
                 {/* PASSWORD END */}
               </div>
               <Button className="mt-6 w-full">Register</Button>
