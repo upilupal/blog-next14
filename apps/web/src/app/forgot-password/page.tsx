@@ -2,21 +2,21 @@
 import FormInput from '@/components/FormInput';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import useLogin from '@/hooks/api/auth/useLogin';
-import { validationSchema } from './validationSchema';
+import useForgotPassword from '@/hooks/api/auth/useForgotPassword';
 import { useFormik } from 'formik';
+import { validationSchema } from './validationSchema';
+import { Loader2 } from 'lucide-react';
 
-const Login = () => {
-  const { login } = useLogin();
+const ForgotPassword = () => {
+  const { forgotPassword, isLoading } = useForgotPassword();
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
         email: '',
-        password: '',
       },
-        validationSchema,
-      onSubmit: (values) => {
-        login(values);
+      validationSchema,
+      onSubmit: ({ email }) => {
+        forgotPassword(email);
       },
     });
 
@@ -26,7 +26,7 @@ const Login = () => {
         <Card className="w-[450px]">
           <CardHeader>
             <CardTitle className="text-center text-3xl text-primary">
-              Login
+              Forgot password
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -36,31 +36,20 @@ const Login = () => {
                 <FormInput
                   name="email"
                   error={errors.email}
+                  label="Email"
                   isError={!!touched.email && !!errors.email}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                   placeholder="Email"
                   type="email"
                   value={values.email}
-                  label={'Email'}
                 />
                 {/* EMAIL END */}
-
-                {/* PASSWORD */}
-                <FormInput
-                  name="password"
-                  error={errors.password}
-                  isError={!!touched.password && !!errors.password}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  placeholder="Password"
-                  type="password"
-                  value={values.password}
-                  label={'Password'}
-                />
-                {/* PASSWORD END */}
               </div>
-              <Button className="mt-6 w-full">Login</Button>
+              <Button className="mt-6 w-full" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isLoading? "loading" : "Submit"}
+                </Button>
             </form>
           </CardContent>
         </Card>
@@ -69,4 +58,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
