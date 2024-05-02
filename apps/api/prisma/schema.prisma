@@ -19,3 +19,14 @@ model Sample {
 
   @@map("samples") // if you want to use snake_case format
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  fullName String
+  email String
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
