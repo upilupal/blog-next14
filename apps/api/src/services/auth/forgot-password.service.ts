@@ -1,16 +1,10 @@
 import { JWT_SECRET, NEXT_BASE_URL } from '@/config';
-import { comparePassword } from '@/lib/bcrypt';
 import { transporter } from '@/lib/nodemailer';
 import prisma from '@/prisma';
-import { User } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
-
-export const forgotPasswordService = async (
-  body: Pick<User, 'email' | 'password'>,
-) => {
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+export const forgotPasswordService = async (email: string) => {
   try {
-    const { email, password } = body;
-
     const user = await prisma.user.findFirst({
       where: { email },
     });
@@ -27,7 +21,7 @@ export const forgotPasswordService = async (
 
     await transporter.sendMail({
       from: 'Admin',
-      to: 'email',
+      to: email,
       subject: 'Link Reset Password',
       html: `<a href="${link}" target="_blank">Reset Password Here </a>`,
     });

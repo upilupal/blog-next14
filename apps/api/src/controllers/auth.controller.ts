@@ -26,6 +26,9 @@ export class AuthController {
 
   async forgotPasswordController(req: Request, res: Response, next:NextFunction) {
     try {
+
+      console.log(req.body);
+      
         const result = await forgotPasswordService(req.body.email);
 
         res.status(200).send(result)

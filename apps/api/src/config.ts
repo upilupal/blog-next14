@@ -16,3 +16,4 @@ export const JWT_SECRET =  process.env.JWT_SECRET || 'secret';
 export const NEXT_BASE_URL = process.env.NEXT_BASE_URL || '';
 export const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || '';
 export const GMAIL_EMAIL = process.env.GMAIL_EMAIL || '';
+

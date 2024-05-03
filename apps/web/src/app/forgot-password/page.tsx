@@ -16,6 +16,8 @@ const ForgotPassword = () => {
       },
       validationSchema,
       onSubmit: ({ email }) => {
+        console.log(email);
+        
         forgotPassword(email);
       },
     });
@@ -46,7 +48,7 @@ const ForgotPassword = () => {
                 />
                 {/* EMAIL END */}
               </div>
-              <Button className="mt-6 w-full" disabled={isLoading}>
+              <Button className="mt-6 w-full" disabled={isLoading} type='submit'>
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {isLoading? "loading" : "Submit"}
                 </Button>
