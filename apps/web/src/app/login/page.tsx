@@ -5,8 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import useLogin from '@/hooks/api/auth/useLogin';
 import { validationSchema } from './validationSchema';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+  const router = useRouter();
   const { login } = useLogin();
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
@@ -59,6 +61,11 @@ const Login = () => {
                   label={'Password'}
                 />
                 {/* PASSWORD END */}
+
+                <p className='cursor-pointer text-end text-xs'
+                onClick={() => router.push('/forgot-password')}>
+                  forgot password ?
+                </p>
               </div>
               <Button className="mt-6 w-full">Login</Button>
             </form>
