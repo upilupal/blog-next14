@@ -6,10 +6,10 @@ import { User } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
 
 export const forgotPasswordService = async (
-  body: Pick<User, 'email' | 'password'>,
+  email: string
 ) => {
   try {
-    const { email, password } = body;
+    // const { email } = body;
 
     const user = await prisma.user.findFirst({
       where: { email },
@@ -27,7 +27,7 @@ export const forgotPasswordService = async (
 
     await transporter.sendMail({
       from: 'Admin',
-      to: 'email',
+      to: email,
       subject: 'Link Reset Password',
       html: `<a href="${link}" target="_blank">Reset Password Here </a>`,
     });
