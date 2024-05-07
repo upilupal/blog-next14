@@ -1,8 +1,6 @@
 import { JWT_SECRET, NEXT_BASE_URL } from '@/config';
-import { comparePassword } from '@/lib/bcrypt';
 import { transporter } from '@/lib/nodemailer';
 import prisma from '@/prisma';
-import { User } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
 
 export const forgotPasswordService = async (
