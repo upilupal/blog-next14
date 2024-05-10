@@ -16,6 +16,7 @@ export class BlogRouter {
 
   private initializeRoutes(): void {
     this.router.post('/', verifyToken, uploader('IMG', '/images').array('thumbnail', 1) ,this.blogController.createBlogController);
+    this.router.get('/', this.blogController.getBlogsController);
     this.router.get('/:id', this.blogController.getBlogController);
   }
 
