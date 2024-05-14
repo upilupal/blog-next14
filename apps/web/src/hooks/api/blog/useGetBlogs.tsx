@@ -6,7 +6,7 @@ import { IPaginationMeta, IPaginationQueries } from '@/types/pagination.type';
 import { useEffect, useState } from 'react';
 
 interface IGetBlogsQuery extends IPaginationQueries {
-    search?: string;
+  search?: string;
 }
 
 const useGetBlogs = (queries: IGetBlogsQuery) => {
@@ -32,7 +32,6 @@ const useGetBlogs = (queries: IGetBlogsQuery) => {
     getBlogs();
   }, [queries?.page, queries?.search]);
 
-  
   return { data, meta, isLoading };
 };
 export default useGetBlogs;
