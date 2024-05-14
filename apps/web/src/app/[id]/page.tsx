@@ -47,8 +47,9 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
           <h1 className="text-4xl font-semibold">{blog.title}</h1>
           <div className="flex mb-2 items-center justify-between">
             <p className="text-base font-light italic">
-              {format(new Date(blog.createdAt), 'dd MMMM yyyy')} -{' '}
-              {blog.user.fullName}
+                {format(new Date(blog.createdAt), 'dd MMMM yyyy')} -
+                {' '}
+                {blog.user.fullName}
             </p>
             <div className="flex gap-4 items-center">
               {id === blog.userId && (

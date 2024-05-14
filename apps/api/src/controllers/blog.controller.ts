@@ -16,7 +16,7 @@ export class BlogController {
 
       const result = await createBlogService(req.body, files[0]);
       // console.log(result);
-
+      
       return res.status(201).send(result);
     } catch (error) {
       next(error);
