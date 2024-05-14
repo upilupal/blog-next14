@@ -10,7 +10,7 @@ export default function Home() {
   const [page, setPage] = useState<number>(1);
   const { data: blogs, meta } = useGetBlogs({
     page,
-    take: 1,
+    take: 6,
   });
 
   const handleChangePaginate = ({ selected }: { selected: number }) => {

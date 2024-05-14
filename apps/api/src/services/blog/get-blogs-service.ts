@@ -11,6 +11,7 @@ export const getBlogsService = async (query: GetBlogsQuery) => {
     const {page, sortBy, sortOrder, take, search} = query;
     const whereClause: Prisma.BlogWhereInput = {
         title: {contains: search},
+        deletedAt: null,
     };
     const blogs = await prisma.blog.findMany({
          where: whereClause,
