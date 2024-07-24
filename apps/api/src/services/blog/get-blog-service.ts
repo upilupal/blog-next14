@@ -3,7 +3,7 @@ import prisma from "@/prisma"
 export const getBlogService = async (id: number) => {
     try {
         const blog = await prisma.blog.findFirst({
-            where: {id},
+            where: {id, deletedAt: null},
             include: {user: true},
         })
 

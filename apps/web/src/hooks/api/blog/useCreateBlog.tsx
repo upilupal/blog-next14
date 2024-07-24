@@ -15,6 +15,7 @@ const useCreateBlog = () => {
 
       const createBlogForm = new FormData();
 
+
       createBlogForm.append('title', title);
       createBlogForm.append('category', category);
       createBlogForm.append('content', content);
@@ -26,6 +27,7 @@ const useCreateBlog = () => {
       });
 
       await axiosInstance.post<Blog>('/blogs', createBlogForm);
+
       // toast success here
       router.push('/');
     } catch (error) {

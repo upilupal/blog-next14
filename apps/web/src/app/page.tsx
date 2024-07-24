@@ -1,16 +1,16 @@
 'use client';
 import Autocomplete from '@/components/Autocomplete';
 import BlogCard from '@/components/BlogCard';
+import Pagination from '@/components/Pagination';
 import useGetBlogs from '@/hooks/api/blog/useGetBlogs';
 import { appConfig } from '@/utils/config';
-import Pagination from '@/components/Pagination';
 import { useState } from 'react';
 
 export default function Home() {
   const [page, setPage] = useState<number>(1);
   const { data: blogs, meta } = useGetBlogs({
     page,
-    take: 1,
+    take: 6,
   });
 
   const handleChangePaginate = ({ selected }: { selected: number }) => {
