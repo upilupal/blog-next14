@@ -20,14 +20,16 @@ export default function Home() {
   return (
     <main className="container mx-auto px-4">
       {/* JUMBOTRON */}
-      <section className="text-center mt-10">
-        <h1 className="text-4xl font-bold">Fit Hub</h1>
-        <p className="text-xl">A blog about food, experiences, and recipe</p>
+      <section className="mt-10">
+        <h1 className="text-4xl font-bold text-center ">FIT HUB</h1>
+        <p className="md:text-xl text-center ">
+          A blog about food, experiences, and recipe
+        </p>
+        <Autocomplete />
       </section>
-      <Autocomplete />
 
       {/* CARDS */}
-      <section className="grid grid-cols-3 gap-8 mt-10">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
         {blogs.map((blog, index) => {
           return (
             <BlogCard
@@ -44,7 +46,7 @@ export default function Home() {
         })}
       </section>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center my-5">
         <Pagination
           total={meta?.total || 0}
           take={meta?.take || 0}

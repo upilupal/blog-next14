@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import useGetBlog from '@/hooks/api/blog/useGetBlog';
 import { format } from 'date-fns';
-import { Edit, Share2, Trash } from 'lucide-react';
+import { Edit, List, Share2, Trash } from 'lucide-react';
 import Image from 'next/image';
 import SkeletonBlogDetail from './components/SkeletonBlogDetail';
 import { notFound, useRouter } from 'next/navigation';
@@ -84,7 +84,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
         </div>
       </section>
 
-      <section>
+      <section className='w-3/4 my-8'>
         <Markdown content={blog.content} />
       </section>
 

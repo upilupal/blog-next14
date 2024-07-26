@@ -3,27 +3,30 @@
 import { axiosInstance } from '@/lib/axios';
 import { Blog } from '@/types/blog.type';
 import { IPaginationMeta, IPaginationQueries } from '@/types/pagination.type';
+import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 
 interface IGetBlogsQuery extends IPaginationQueries {
-    search?: string;
-    userId?: number;
+  id: number;
 }
 
-const useGetBlogs = (queries: IGetBlogsQuery) => {
+const useGetBlogsById = (queries: IGetBlogsQuery) => {
   const [data, setData] = useState<Blog[]>([]);
   const [meta, setMeta] = useState<IPaginationMeta | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const getBlogs = async () => {
     try {
-      const { data } = await axiosInstance.get('/blogs', {
+      const { data } = await axiosInstance.get(`/blogs/user`,{
         params: queries,
       });
 
       setData(data.data);
-      setMeta(data.meta);
+      setMeta(data.meta)
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        console.log(error);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -31,9 +34,9 @@ const useGetBlogs = (queries: IGetBlogsQuery) => {
 
   useEffect(() => {
     getBlogs();
-  }, [queries?.page, queries?.search]);
+  }, [queries?.page, queries.id]);
 
-  
-  return { data, meta, isLoading };
+  return { data, isLoading, meta, refetch: getBlogs };
 };
-export default useGetBlogs;
+
+export default useGetBlogsById;

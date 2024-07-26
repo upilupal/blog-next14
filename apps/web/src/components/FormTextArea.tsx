@@ -46,7 +46,6 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
                     value={value}
                     style={{resize: 'none'}}
                     rows={4}
-                    className={isError ? 'border-red-500' : ''}
                   />
                   {isError ? (
                     <div className="text-xs text-red-500">

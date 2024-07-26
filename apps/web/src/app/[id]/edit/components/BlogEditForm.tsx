@@ -80,6 +80,7 @@ const BlogEditForm: FC<BlogEditFormProps> = ({ isLoading }) => {
           label="Content"
           value={values.content}
           isError={Boolean(errors.content)}
+          error={errors.content}
         />
         <div className="mb-4 flex justify-end">
           <Button className="mt-6 w-full" disabled={isLoading}>

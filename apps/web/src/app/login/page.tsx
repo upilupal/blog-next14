@@ -23,9 +23,9 @@ const Login = () => {
     });
 
   return (
-    <main className="container mx-auto my-10 px-4">
-      <div className="flex justify-center">
-        <Card className="w-[450px]">
+    <main className="container mx-auto px-4">
+      <div className="flex justify-center h-screen items-center">
+        <Card className="w-[450px] bg-secondary">
           <CardHeader>
             <CardTitle className="text-center text-3xl text-primary">
               Login

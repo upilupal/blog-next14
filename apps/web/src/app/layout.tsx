@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -5,6 +6,8 @@ import Navbar from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import StoreProvider from '@/providers/StoreProvider';
 import { AuthProvider } from '@/providers/AuthProvider';
+import { usePathname } from 'next/navigation';
+import ClientLayout from './clientLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,16 +21,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
-          <AuthProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </AuthProvider>
-        </StoreProvider>
+      <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

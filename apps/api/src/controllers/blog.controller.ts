@@ -2,6 +2,7 @@ import { createBlogService } from '@/services/blog/create-blog.service';
 import { deleteBlogService } from '@/services/blog/delete-blog-service';
 import { getBlogService } from '@/services/blog/get-blog-service';
 import { getBlogsService } from '@/services/blog/get-blogs-service';
+import { getBlogsByUserService } from '@/services/blog/get-blogsByUser-service';
 import { updateBlogService } from '@/services/blog/update-blog-service';
 import { NextFunction, Request, Response } from 'express';
 
@@ -45,6 +46,28 @@ export class BlogController {
         search: (req.query.search as string) || '',
       };
       const result = await getBlogsService(query);
+
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getBlogsByUserController(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const query = {
+        id: parseInt(req.query.id as string),
+        take: parseInt(req.query.take as string) || 1000000,
+        page: parseInt(req.query.page as string) || 1,
+        sortBy: parseInt(req.query.sortBy as string) || 'createdAt',
+        sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
+      };
+
+      const result = await getBlogsByUserService(query);
 
       return res.status(200).send(result);
     } catch (error) {

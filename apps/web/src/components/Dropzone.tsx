@@ -31,7 +31,7 @@ const Dropzone: FC<DropzoneProps> = ({ isError, label, onDrop }) => {
         })}
       >
         <input {...getInputProps()} />
-        <Label className="text-base">
+        <Label className="md:text-base text-center">
           Drag & drop some files here, or click to select files
         </Label>
       </div>
