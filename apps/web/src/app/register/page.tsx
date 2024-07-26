@@ -22,12 +22,12 @@ const Register: React.FC = () => {
   });
 
   return (
-    <main className="container mx-auto my-10 px-4">
-      <div className="flex justify-center">
-        <Card className="w-[450px]">
-          <CardHeader>
+    <main className="container mx-auto px-4">
+      <div className="flex justify-center items-center h-screen">
+        <Card className="w-[450px] bg-secondary">
+          <CardHeader className='py-8'>
             <CardTitle className="text-center text-3xl text-primary">
-              Welcome to Socmed
+              Welcome to FitHub
             </CardTitle>
           </CardHeader>
           <CardContent>

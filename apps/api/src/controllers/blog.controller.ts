@@ -2,6 +2,7 @@ import { createBlogService } from '@/services/blog/create-blog.service';
 import { deleteBlogService } from '@/services/blog/delete-blog-service';
 import { getBlogService } from '@/services/blog/get-blog-service';
 import { getBlogsService } from '@/services/blog/get-blogs-service';
+import { getBlogsByUserService } from '@/services/blog/get-blogsByUser-service';
 import { updateBlogService } from '@/services/blog/update-blog-service';
 import { NextFunction, Request, Response } from 'express';
 
@@ -9,6 +10,7 @@ export class BlogController {
   async createBlogController(req: Request, res: Response, next: NextFunction) {
     try {
       const files = req.files as Express.Multer.File[];
+
 
       if (!files?.length) {
         throw new Error('no file uploaded');
@@ -51,6 +53,28 @@ export class BlogController {
     }
   }
 
+  async getBlogsByUserController(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const query = {
+        id: parseInt(req.query.id as string),
+        take: parseInt(req.query.take as string) || 1000000,
+        page: parseInt(req.query.page as string) || 1,
+        sortBy: parseInt(req.query.sortBy as string) || 'createdAt',
+        sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
+      };
+
+      const result = await getBlogsByUserService(query);
+
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async updateBlogController(req: Request, res: Response, next: NextFunction) {
     try {
       console.log('isi req files', req.files);
@@ -70,6 +94,12 @@ export class BlogController {
     }
   }
 
+
+ 
+
+
+
+
   async deleteBlogController(req: Request, res: Response, next: NextFunction) {
     try {
       await deleteBlogService(Number(req.params.id));
@@ -79,4 +109,6 @@ export class BlogController {
       next(error);
     }
   }
+
+ 
 }

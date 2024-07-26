@@ -22,6 +22,7 @@ export class BlogRouter {
       this.blogController.createBlogController,
     );
     this.router.get('/', this.blogController.getBlogsController);
+    this.router.get('/user', this.blogController.getBlogsByUserController);
     this.router.get('/:id', this.blogController.getBlogController);
     this.router.patch(
       '/:id',

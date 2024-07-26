@@ -26,10 +26,10 @@ const BlogCard: FC<BlogCardProps> = ({
 }) => {
   return (
     <Link href={`/${blogId}`}>
-    <Card>
+    <Card className='h-[420px]'>
       <CardHeader>
         <div className="relative h-[220px] w-full overflow-hidden rounded-md">
-          <Image src={imageUrl} alt="thumbnail" className="object-cove" fill />
+          <Image src={imageUrl} alt="thumbnail" className="object-cover" fill />
         </div>
       </CardHeader>
       <CardContent>
