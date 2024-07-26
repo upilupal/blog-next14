@@ -28,16 +28,28 @@ const ProfilPage = () => {
 
   return (
     <div className="flex flex-col mx-auto md:container px-4 justify-center">
-      <h1 className="font-semibold md:text-3xl text-xl text-primary md:ml-8">Your Blogs</h1>
+      <h1 className="font-semibold md:text-3xl text-xl text-primary md:ml-8">
+        Your Blogs
+      </h1>
 
       {isLoading ? (
         <p>Loading...</p>
       ) : blogs.length === 0 ? (
-        <div className='flex flex-col justify-center items-center my-10 md:my-0 lg:h-[calc(100vh-248px)]    h-[calc(100vh-365px)] md:h-fit'>
-          <Image src={"/File searching-amico.svg"} alt='blank data' width={400} height={400} className=''/>
-          <p className="text-center text-xl">You haven't posted any blogs yet. 
+        <div className="flex flex-col justify-center items-center my-10 md:my-0 lg:h-[calc(100vh-248px)]    h-[calc(100vh-365px)] md:h-fit">
+          <Image
+            src={'/File searching-amico.svg'}
+            alt="blank data"
+            width={400}
+            height={400}
+            className=""
+          />
+          <p className="text-center text-xl">
+          You haven&apos;t posted any blogs yet. 
             <span>
-              <Link href={"/write"} className='text-blue-700 hover:opacity-50'> Write blog</Link>
+              <Link href={'/write'} className="text-blue-700 hover:opacity-50">
+                {' '}
+                Write blog
+              </Link>
             </span>
           </p>
         </div>

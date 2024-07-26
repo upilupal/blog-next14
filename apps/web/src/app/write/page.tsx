@@ -1,26 +1,18 @@
 'use client';
 
+import CategoryInput from '@/components/CategoryInput';
 import Dropzone from '@/components/Dropzone';
 import FormInput from '@/components/FormInput';
 import FormTextArea from '@/components/FormTextArea';
 import PreviewImages from '@/components/PreviewImages';
 import RichTextEditor from '@/components/RichTextEditor';
 import { Button } from '@/components/ui/button';
+import AuthGuard from '@/hoc/AuthGuard';
 import useCreateBlog from '@/hooks/api/blog/useCreateBlog';
 import { useAppSelector } from '@/redux/hooks';
 import { IFormCreateBlog } from '@/types/blog.type';
 import { useFormik } from 'formik';
 import { validationSchema } from './validationSchema';
-import AuthGuard from '@/hoc/AuthGuard';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import CategoryInput from '@/components/CategoryInput';
 const Write = () => {
   const { createBlog } = useCreateBlog();
   const { id } = useAppSelector((state) => state.user);

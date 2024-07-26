@@ -7,7 +7,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     keepLogin();
-  }, []);
+  }, [keepLogin]);
 
   return <>{children}</>;
 };

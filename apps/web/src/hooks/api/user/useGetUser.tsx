@@ -5,13 +5,13 @@ import { cn } from '@/lib/utils';
 import { Profile } from '@/types/profile.type';
 import { User } from '@/types/user.type';
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const useGetUser = (id: number) => {
   const [data, setData] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     try {
       const { data } = await axiosInstance.get<Profile>(`/user/${id}`);
       setData(data);
@@ -30,11 +30,11 @@ const useGetUser = (id: number) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  },[id]);
 
   useEffect(() => {
     getUser();
-  }, [id]);
+  }, [getUser]);
   return { user: data, isLoading, refetch: getUser };
 };
 

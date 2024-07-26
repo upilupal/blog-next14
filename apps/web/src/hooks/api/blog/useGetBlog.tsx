@@ -2,29 +2,29 @@
 import { axiosInstance } from '@/lib/axios';
 import { Blog } from '@/types/blog.type';
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const useGetBlog = (id: number) => {
   const [data, setData] = useState<Blog | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getBlog = async () => {
+  const getBlog = useCallback(async () => {
     try {
       const { data } = await axiosInstance.get<Blog>(`/blogs/${id}`);
       setData(data);
     } catch (error) {
       if (error instanceof AxiosError) {
-        // TODO : replace console.log with toast
+        // TODO: Replace console.log with toast or other error handling
         console.log(error);
       }
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     getBlog();
-  }, []);
+  }, [getBlog]);
   return { blog: data, isLoading, refetch: getBlog };
 };
 
