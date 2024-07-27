@@ -16,7 +16,7 @@ const social = [
 
 export const Footer = () => {
   return (
-    <main className="bg-primary h-36 md:h-fit">
+    <main className="bg-primary h-36 md:h-fit mt-auto">
       <div className="text-secondary container mx-auto p-4">
         <div className="flex md:flex-row flex-col gap-2 items-center justify-between py-2">
           <h1 className="md:text-2xl text-xl font-bold">FIT HUB</h1>
