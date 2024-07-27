@@ -4,7 +4,7 @@ import { axiosInstance } from '@/lib/axios';
 import { Blog } from '@/types/blog.type';
 import { IPaginationMeta, IPaginationQueries } from '@/types/pagination.type';
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface IGetBlogsQuery extends IPaginationQueries {
   id: number;
@@ -15,7 +15,7 @@ const useGetBlogsById = (queries: IGetBlogsQuery) => {
   const [meta, setMeta] = useState<IPaginationMeta | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const getBlogs = async () => {
+  const getBlogs = useCallback(async () => {
     try {
       const { data } = await axiosInstance.get(`/blogs/user`,{
         params: queries,
@@ -30,11 +30,11 @@ const useGetBlogsById = (queries: IGetBlogsQuery) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [queries?.page, queries.id]);
 
   useEffect(() => {
     getBlogs();
-  }, [queries?.page, queries.id]);
+  }, [getBlogs]);
 
   return { data, isLoading, meta, refetch: getBlogs };
 };

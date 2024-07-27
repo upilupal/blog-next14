@@ -3,12 +3,13 @@ import Autocomplete from '@/components/Autocomplete';
 import BlogCard from '@/components/BlogCard';
 import Pagination from '@/components/Pagination';
 import useGetBlogs from '@/hooks/api/blog/useGetBlogs';
+import { Blog } from '@/types/blog.type';
 import { appConfig } from '@/utils/config';
 import { useState } from 'react';
 
 export default function Home() {
   const [page, setPage] = useState<number>(1);
-  const { data: blogs, meta } = useGetBlogs({
+  const { data: blogs, meta, isLoading } = useGetBlogs({
     page,
     take: 6,
   });
@@ -16,6 +17,7 @@ export default function Home() {
   const handleChangePaginate = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
   };
+  
 
   return (
     <main className="container mx-auto px-4">
@@ -30,7 +32,7 @@ export default function Home() {
 
       {/* CARDS */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-        {blogs.map((blog, index) => {
+        {blogs.map((blog: Blog, index: number) => {
           return (
             <BlogCard
               key={index}
