@@ -37,8 +37,6 @@ const Write = () => {
     onSubmit: (values) => {
       createBlog({ ...values, userId: id });
     },
-    // validateOnChange: true, // Validate on each change
-    // validateOnBlur: true, // Validate on blur
   });
 
  

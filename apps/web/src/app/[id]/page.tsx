@@ -40,11 +40,11 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
   return (
     <main className="container mx-auto px-4">
       <section className="mb-4">
-        <div className="mb-4 space-y-1.5">
+        <div className="mb-4 space-y-1.5 md:container">
           <Badge variant="outline" className="rounded-sm bg-green-100">
             {blog.category}
           </Badge>
-          <h1 className="text-4xl font-semibold">{blog.title}</h1>
+          <h1 className="text-2xl md:text-4xl font-semibold">{blog.title}</h1>
           <div className="flex mb-2 items-center justify-between">
             <p className="text-base font-light italic">
                 {format(new Date(blog.createdAt), 'dd MMMM yyyy')} -
@@ -84,7 +84,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
         </div>
       </section>
 
-      <section className='w-3/4 my-8'>
+      <section className=' md:container my-8'>
         <Markdown content={blog.content} />
       </section>
 
