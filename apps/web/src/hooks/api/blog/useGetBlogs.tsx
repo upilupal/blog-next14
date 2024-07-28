@@ -3,7 +3,7 @@
 import { axiosInstance } from '@/lib/axios';
 import { Blog } from '@/types/blog.type';
 import { IPaginationMeta, IPaginationQueries } from '@/types/pagination.type';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 
 interface IGetBlogsQuery extends IPaginationQueries {
   search?: string;
@@ -15,20 +15,24 @@ const useGetBlogs = (queries: IGetBlogsQuery) => {
   const [meta, setMeta] = useState<IPaginationMeta | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // Memoize queries to avoid unnecessary recalculations
+ 
+
   const getBlogs = useCallback(async () => {
+    setIsLoading(true);
     try {
-      const { data } = await axiosInstance.get('/blogs', {
+      const response = await axiosInstance.get<{ data: Blog[], meta: IPaginationMeta }>('/blogs', {
         params: queries,
       });
 
-      setData(data.data);
-      setMeta(data.meta);
+      setData(response.data.data);
+      setMeta(response.data.meta);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
-  }, [queries?.page, queries?.search]);
+  }, [queries.page, queries.search, queries.userId]);
 
   useEffect(() => {
     getBlogs();
@@ -36,4 +40,5 @@ const useGetBlogs = (queries: IGetBlogsQuery) => {
 
   return { data, meta, isLoading };
 };
+
 export default useGetBlogs;

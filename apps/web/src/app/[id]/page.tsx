@@ -21,6 +21,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
   const { blog, isLoading } = useGetBlog(Number(params.id));
   const { deleteBlog } = useDeleteBlog();
   const [open, setOpen] = useState<boolean>(false);
+  
   const onDelete = () => {
     setOpen(false);
     deleteBlog(Number(params.id));
@@ -28,7 +29,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4"> 
         <SkeletonBlogDetail />
       </div>
     );

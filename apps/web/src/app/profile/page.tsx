@@ -35,16 +35,17 @@ const ProfilPage = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : blogs.length === 0 ? (
-        <div className="flex flex-col justify-center items-center my-10 md:my-0 lg:h-[calc(100vh-248px)]    h-[calc(100vh-365px)] md:h-fit">
-          <Image
-            src={'/File searching-amico.svg'}
-            alt="blank data"
-            width={400}
-            height={400}
-            className=""
-          />
-          <p className="text-center text-xl">
-          You haven&apos;t posted any blogs yet. 
+        <div className="flex flex-col justify-center items-center my-10 md:my-0 lg:h-[calc(100vh-15.25rem)]">
+          <div className='w-[300px] h-[300px]  relative'>
+            <Image
+              src={'/File searching-amico.svg'}
+              alt="blank data"
+              fill
+              className="absolute"
+            />
+          </div>
+          <p className="text-center text-lg lg:text-xl ">
+            You haven&apos;t posted any blogs yet.
             <span>
               <Link href={'/write'} className="text-blue-700 hover:opacity-50">
                 {' '}

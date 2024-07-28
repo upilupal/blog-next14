@@ -103,7 +103,13 @@ const Navbar = () => {
               <Link href={'/'}>Home</Link>
               <Link href={'/write'}>Write</Link>
               <Link href={'/profile'}>Profile</Link>
-              <h3 onClick={logout} className="cursor-pointer">
+              <h3
+                onClick={() => {
+                  logout();
+                  handleMenuClick();
+                }}
+                className="cursor-pointer"
+              >
                 Logout
               </h3>
             </div>
